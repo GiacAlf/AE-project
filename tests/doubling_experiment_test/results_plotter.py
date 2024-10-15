@@ -62,7 +62,7 @@ if __name__ == '__main__':
                      'test_2_1', 'test_2_2', 'test_2_3', 'test_2_4', 'test_2_5', 'test_2_6']
 
     # choose between the available tests in num_test_list to display
-    num_test = num_test_list[11]
+    num_test = num_test_list[2]
 
     # list of available algorithms
     algorithm_list = ['stoer_wagner', 'ford_fulkerson', 'networkx_edge_connectivity']

@@ -16,12 +16,12 @@ def create_connected_simple_random_graph(num_nodes, num_edges=None):
     min_edges = num_nodes - 1
     max_edges = num_nodes * (num_nodes - 1) // 2
 
-    # If num_edges is not specified, choose a random value between min_edges and max_edges
+    # if num_edges is not specified, choose a random value between min_edges and max_edges
     if num_edges is None:
         num_edges = random.randint(min_edges, max_edges)
         print(f"Number of edges not specified, randomly chosen between possible values: {num_edges}")
 
-    # Check validity of the input
+    # check validity of the input
     if num_nodes < 1:
         raise ValueError("The number of nodes must be at least 1.")
 
@@ -31,15 +31,15 @@ def create_connected_simple_random_graph(num_nodes, num_edges=None):
     if num_edges > max_edges:
         raise ValueError("The number of edges exceeds the maximum for a simple graph.")
 
-    # Create a connected tree to ensure connectivity
+    # create a connected tree to ensure connectivity
     G = nx.random_tree(num_nodes)
 
-    # Add random edges until we reach num_edges
+    # add random edges until we reach num_edges
     while G.number_of_edges() < num_edges:
         u = random.randint(0, num_nodes - 1)
         v = random.randint(0, num_nodes - 1)
 
-        # Add the edge only if it's a simple edge (no loops, no multiple edges)
+        # add the edge only if it's a simple edge (no loops, no multiple edges)
         if u != v and not G.has_edge(u, v):
             G.add_edge(u, v)
 
