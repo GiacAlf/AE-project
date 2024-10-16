@@ -35,13 +35,9 @@ def run_algorithm(algorithm, input_dir, output_file):
 
 if __name__ == '__main__':
 
-    # list of available tests for stoer-wagner and NetworkX
+    # list of available tests
     num_test_list = ['test_1_1', 'test_1_2', 'test_1_3', 'test_1_4', 'test_1_5', 'test_1_6',
                      'test_2_1', 'test_2_2', 'test_2_3', 'test_2_4', 'test_2_5', 'test_2_6']
-
-    # list of available tests for ford-fulkerson
-    num_test_list_ff = ['test_1_1_ff', 'test_1_2_ff', 'test_1_3_ff', 'test_1_4_ff', 'test_1_5_ff', 'test_1_6_ff',
-                        'test_2_1_ff', 'test_2_2_ff', 'test_2_3_ff', 'test_2_4_ff', 'test_2_5_ff', 'test_2_6_ff']
 
     # list of available algorithms
     algorithm_list = ['stoer_wagner', 'ford_fulkerson', 'networkx_edge_connectivity']
@@ -56,25 +52,22 @@ if __name__ == '__main__':
     """ PARAMETER TO CHANGE: choose between the available algorithms in algorithm_list to execute """
     algorithm = algorithm_list[1]
 
+    # results directory
     output_dir = algorithm + '/results/generated_graphs'
 
     # creates the output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
 
     # ford_fulkerson must have a different num_test_list, with fewer nodes and edges due to its low speed
+    ff = ''
     if algorithm == 'ford_fulkerson':
-        num_test_list = num_test_list_ff
+        ff = '_ff'
 
     for i in range(len(num_test_list)):
         try:
             print(f"Starting the doubling experiment test with {algorithm} algorithm...")
 
-            if algorithm == 'ford_fulkerson':
-                # input directory for ford-fulkerson
-                input_dir = 'test_graphs_ff/generated_graphs' + '_' + num_test_list_ff[i]
-            else:
-                # input directory for stoer-wagner and NetworkX
-                input_dir = 'test_graphs/generated_graphs' + '_' + num_test_list[i]
+            input_dir = 'test_graphs' + ff + '/generated_graphs' + '_' + num_test_list[i]
 
             # checks if all the graphs in the input directory are simple, undirected, not empty and not isolated
             if check_all_graphs(input_dir):

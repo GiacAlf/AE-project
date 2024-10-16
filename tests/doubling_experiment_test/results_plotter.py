@@ -67,7 +67,7 @@ if __name__ == '__main__':
     # list of available algorithms
     algorithm_list = ['stoer_wagner', 'ford_fulkerson', 'networkx_edge_connectivity']
 
-    # choose between the available algorithms in algorithm_list to display
+    """PARAMETER TO CHANGE: choose between the available algorithms in algorithm_list to display """
     algorithm = algorithm_list[0]
 
     # csv file to plot
