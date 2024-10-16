@@ -91,8 +91,8 @@ def run_ford_fulkerson_on_graphs(input_dir, output_file):
             # saves the results
             results.append({
                 'file_name': graph_file,
-                ' edge_connectivity': min_cut,
-                ' execution_time': execution_time,
+                'edge_connectivity': min_cut,
+                'execution_time': execution_time,
                 'num_edges': num_edges
             })
 

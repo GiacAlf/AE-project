@@ -62,13 +62,13 @@ if __name__ == '__main__':
                      'test_2_1', 'test_2_2', 'test_2_3', 'test_2_4', 'test_2_5', 'test_2_6']
 
     # choose between the available tests in num_test_list to display
-    num_test = num_test_list[2]
+    num_test = num_test_list[0]
 
     # list of available algorithms
     algorithm_list = ['stoer_wagner', 'ford_fulkerson', 'networkx_edge_connectivity']
 
     """PARAMETER TO CHANGE: choose between the available algorithms in algorithm_list to display """
-    algorithm = algorithm_list[0]
+    algorithm = algorithm_list[1]
 
     # csv file to plot
     csv_file = algorithm + '/results/generated_graphs/' + algorithm + '_' + 'results' + '_' + num_test + '.csv'
