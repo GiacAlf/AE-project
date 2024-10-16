@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     """ STOER-WAGNER AND NETWORKX DOUBLING EXPERIMENTS GRAPHS CREATION """
     """ In this main nodes or edges are fixed to generate graphs """
-    """
+
     # TEST 1: doubling number of edges keeping number of nodes constant
 
     # test 1.1: fixed number of nodes = 64, doubled number of edges
@@ -159,7 +159,6 @@ if __name__ == '__main__':
     output_dir = 'test_graphs/generated_graphs_test_2_6'
     # generates and saves the graphs
     generate_and_save_graphs(nodes_list, edges_list, output_dir)
-    """
 
     """ FORF-FULKERSON DOUBLING EXPERIMENTS GRAPHS CREATION """
     # TEST 1: doubling number of edges keeping number of nodes constant
