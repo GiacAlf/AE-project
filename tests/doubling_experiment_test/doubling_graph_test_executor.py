@@ -36,9 +36,10 @@ def run_algorithm(algorithm, input_dir, output_file):
 if __name__ == '__main__':
 
     # list of available tests
-    num_test_list = ['test_1_1', 'test_1_2', 'test_1_3', 'test_1_4', 'test_1_5', 'test_1_6',
-                     'test_2_1', 'test_2_2', 'test_2_3', 'test_2_4', 'test_2_5', 'test_2_6']
+    #num_test_list = ['test_1_1', 'test_1_2', 'test_1_3', 'test_1_4', 'test_1_5', 'test_1_6',
+                     #'test_2_1', 'test_2_2', 'test_2_3', 'test_2_4', 'test_2_5', 'test_2_6']
 
+    num_test_list = ['test_2_1']
     # list of available algorithms
     algorithm_list = ['stoer_wagner', 'ford_fulkerson', 'networkx_edge_connectivity']
 
@@ -50,7 +51,7 @@ if __name__ == '__main__':
     }
 
     # choose between the available algorithms in algorithm_list to display
-    algorithm = algorithm_list[0]
+    algorithm = algorithm_list[1]
 
     output_dir = algorithm + '/results/generated_graphs'
 
@@ -69,7 +70,7 @@ if __name__ == '__main__':
                 print(f"\nAll input test graphs are simple and undirected, not empty and not isolated. "
                       f"Running {algorithm} algorithm...")
 
-                output_file = ('results/generated_graphs/' + algorithm + '_results' + '_' +
+                output_file = (algorithm + '/results/generated_graphs/' + algorithm + '_results' + '_' +
                                num_test_list[i] + '.csv')
 
                 run_algorithm(algorithm, input_dir, output_file)
