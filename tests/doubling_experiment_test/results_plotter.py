@@ -29,8 +29,12 @@ def determine_columns(df):
 
 
 # function to plot the csv file
-def plot_from_csv(csv_file, title, plot_line=False, plot_logarithmic=False,
-                  plot_square=False, plot_cubic=False):
+def plot_from_csv(csv_file, title,
+                  plot_logarithmic=False,
+                  plot_line=False,
+                  plot_nlogn=False,
+                  plot_square=False,
+                  plot_cubic=False):
     # load the csv file into a pandas dataframe
     df = pd.read_csv(csv_file)
 
@@ -43,7 +47,16 @@ def plot_from_csv(csv_file, title, plot_line=False, plot_logarithmic=False,
 
     # plot
     plt.figure(figsize=(10, 6))
-    plt.plot(x_data, y_data, marker='o', linestyle='-', color='grey', label='Algorithm')
+    plt.plot(x_data, y_data, marker='o', linestyle='-', color='lawngreen', label='Algorithm')
+
+    if plot_logarithmic:
+        # Perform log(x) transformation and fit a line
+        log_x_data = np.log(x_data)
+        m_log, b_log = np.polyfit(log_x_data, y_data, 1)  # Linear regression on log-transformed x
+
+        # Plot the fitted logarithmic curve (exp transformation)
+        plt.plot(x_data, m_log * np.log(x_data) + b_log, color='green', linestyle='-.',
+                 label='Logarithmic Fit')
 
     # Option to plot a line or a logarithmic curve
     if plot_line:
@@ -52,25 +65,23 @@ def plot_from_csv(csv_file, title, plot_line=False, plot_logarithmic=False,
 
         plt.plot(x_data, m * x_data + b, color='red', linestyle='--', label='Best Line Fit')
 
-    if plot_logarithmic:
-        # Perform log(x) transformation and fit a line
-        log_x_data = np.log(x_data)
-        m_log, b_log = np.polyfit(log_x_data, y_data, 1)  # Linear regression on log-transformed x
-
-        # Plot the fitted logarithmic curve (exp transformation)
-        plt.plot(x_data, m_log * np.log(x_data) + b_log, color='green', linestyle='--',
-                 label='Logarithmic Fit')
+    if plot_nlogn:
+        # n*log(n) fit (scaling)
+        nlogn_data = x_data * np.log(x_data)
+        # Scaling to match the magnitude of the execution times
+        scale_factor = np.polyfit(nlogn_data, y_data, 1)[0]
+        plt.plot(x_data, scale_factor * nlogn_data, color='orange', linestyle=':', label='n*log(n) Fit')
 
     if plot_square:
         # Plot quadratic fit (degree 2)
         p_quad = np.polyfit(x_data, y_data, 2)
-        plt.plot(x_data, np.polyval(p_quad, x_data), color='blue', linestyle='--',
+        plt.plot(x_data, np.polyval(p_quad, x_data), color='blue', linestyle='-.',
                  label='Quadratic Fit')
 
     if plot_cubic:
         # Plot cubic fit (degree 3)
         p_cubic = np.polyfit(x_data, y_data, 3)
-        plt.plot(x_data, np.polyval(p_cubic, x_data), color='purple', linestyle='--',
+        plt.plot(x_data, np.polyval(p_cubic, x_data), color='purple', linestyle='-.',
                  label='Cubic Fit')
 
     # labels
@@ -92,14 +103,14 @@ if __name__ == '__main__':
     algorithm_list = ['stoer_wagner', 'ford_fulkerson', 'networkx_edge_connectivity']
 
     """PARAMETER TO CHANGE: choose between the available algorithms in algorithm_list to display """
-    algorithm = algorithm_list[1]
+    algorithm = algorithm_list[0]
 
     # list of available tests for Stoer-Wagner and NetworkX edge connectivity
     num_test_list = ['test_1_1', 'test_1_2', 'test_1_3', 'test_1_4', 'test_1_5', 'test_1_6',
                      'test_2_1', 'test_2_2', 'test_2_3', 'test_2_4', 'test_2_5', 'test_2_6']
 
     # choose between the available tests in num_test_list to display
-    num_test = num_test_list[9]
+    num_test = num_test_list[11]
 
     # csv file to plot
     csv_file = (algorithm + '/results/generated_graphs/' + algorithm + '_' + 'results' +
@@ -110,7 +121,10 @@ if __name__ == '__main__':
 
     # Choose the fit function to plot with True
     plot_from_csv(csv_file, title,
-                  plot_line=False,
+                  plot_line=True,
                   plot_logarithmic=False,
-                  plot_square=True,
+                  plot_nlogn=False,
+                  plot_square=False,
                   plot_cubic=False)
+
+    # plt.savefig(algorithm + '_' + 'results' + '_' + num_test, format='jpeg', dpi=300)

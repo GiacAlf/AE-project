@@ -13,7 +13,6 @@ if __name__ == '__main__':
     """ In this main nodes or edges are fixed to generate graphs """
 
     # TEST 1: doubling number of edges keeping number of nodes constant
-
     # test 1.1: fixed number of nodes = 64, doubled number of edges
     nodes_list = [64, 64, 64, 64, 64]
     edges_list = [64, 128, 256, 512, 1024]
@@ -160,12 +159,14 @@ if __name__ == '__main__':
     # generates and saves the graphs
     generate_and_save_graphs(nodes_list, edges_list, output_dir)
 
-    """ FORF-FULKERSON DOUBLING EXPERIMENTS GRAPHS CREATION """
+
+    # FORF-FULKERSON DOUBLING EXPERIMENTS GRAPHS CREATION
+
     # TEST 1: doubling number of edges keeping number of nodes constant
 
     # test 1.1: fixed number of nodes = 6, doubled number of edges
-    nodes_list = [6, 6, 6]
-    edges_list = [5, 10, 15]
+    nodes_list = [6, 6]
+    edges_list = [6, 12]
 
     print(f"\nNodes list: {nodes_list}")
     print(f"Edges list: {edges_list}")
@@ -177,7 +178,7 @@ if __name__ == '__main__':
 
     # test 1.2: fixed number of nodes = 12, doubled number of edges
     nodes_list = [12, 12, 12]
-    edges_list = [15, 30, 45]
+    edges_list = [15, 30, 60]
 
     print(f"\nNodes list: {nodes_list}")
     print(f"Edges list: {edges_list}")
@@ -186,6 +187,7 @@ if __name__ == '__main__':
     output_dir = 'test_graphs_ff/generated_graphs_test_1_2'
     # generates and saves the graphs
     generate_and_save_graphs(nodes_list, edges_list, output_dir)
+
 
     # test 1.3: fixed number of nodes = 24, doubled number of edges
     nodes_list = [24, 24, 24, 24]
