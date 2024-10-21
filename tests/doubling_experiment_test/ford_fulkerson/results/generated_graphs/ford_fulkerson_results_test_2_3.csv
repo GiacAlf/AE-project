@@ -1,0 +1,4 @@
+file_name,edge_connectivity,execution_time,num_edges,num_nodes
+24_nodes_150_edges.csv,7,0.21828222274780273,150,24
+48_nodes_150_edges.csv,3,1.6731948852539062,150,48
+96_nodes_150_edges.csv,1,6.639914035797119,150,96
